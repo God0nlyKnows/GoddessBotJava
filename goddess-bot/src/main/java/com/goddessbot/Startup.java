@@ -1,8 +1,8 @@
 package com.goddessbot;
 
-import javax.security.auth.login.LoginException;
+import java.util.EnumSet;
 
-import com.goddessbot.modules.CommandsHandler;
+import javax.security.auth.login.LoginException;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
@@ -11,38 +11,54 @@ import net.dv8tion.jda.api.utils.ChunkingFilter;
 import net.dv8tion.jda.api.utils.MemberCachePolicy;
 import net.dv8tion.jda.api.utils.cache.CacheFlag;
 import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.requests.GatewayIntent;
 
 public class Startup {
 
     public static JDA buildJda() throws LoginException {
 
-        JDABuilder builder = JDABuilder.createDefault(System.getenv("GODDESS_BOT_TOKEN"));
+        JDABuilder builder = JDABuilder.createDefault(Config.get("token"),configureIntents());
 
         configureMemoryUsage(builder);
 
         builder.setActivity(Activity.watching("You"));
-        builder.setStatus(OnlineStatus.DO_NOT_DISTURB);
 
-        builder.addEventListeners(new CommandsHandler());
+        builder.setStatus(OnlineStatus.ONLINE);
+
+        builder.addEventListeners(new Listener());
 
         return builder.build();
     }
 
+
+
     private static void configureMemoryUsage(JDABuilder builder) {
-        // Disable cache for member activities (streaming/games/spotify)
+
         builder.disableCache(CacheFlag.ACTIVITY);
 
-        // Only cache members who are either in a voice channel or owner of the guild
         builder.setMemberCachePolicy(MemberCachePolicy.VOICE.or(MemberCachePolicy.OWNER));
 
-        // Disable member chunking on startup
         builder.setChunkingFilter(ChunkingFilter.NONE);
 
         builder.setAutoReconnect(true);
 
-        // Consider guilds with more than 50 members as "large".
-        // Large guilds will only provide online members in their setup and thus reduce
-        // bandwidth if chunking is disabled.
         builder.setLargeThreshold(60);
+    }
+
+
+    private static EnumSet<GatewayIntent> configureIntents(){
+        return EnumSet.of(
+            GatewayIntent.DIRECT_MESSAGES,
+            GatewayIntent.DIRECT_MESSAGE_REACTIONS,
+            GatewayIntent.DIRECT_MESSAGE_TYPING,
+            GatewayIntent.GUILD_MESSAGES,
+            GatewayIntent.GUILD_MESSAGE_REACTIONS,
+            GatewayIntent.GUILD_MESSAGE_TYPING,
+            GatewayIntent.GUILD_VOICE_STATES,
+            GatewayIntent.GUILD_EMOJIS,
+            GatewayIntent.GUILD_MEMBERS,
+            GatewayIntent.GUILD_PRESENCES,
+            GatewayIntent.GUILD_WEBHOOKS
+        );
     }
 }
