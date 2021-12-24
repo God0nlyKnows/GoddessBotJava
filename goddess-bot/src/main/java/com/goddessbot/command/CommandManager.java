@@ -9,9 +9,17 @@ import javax.annotation.Nullable;
 
 import com.goddessbot.Config;
 import com.goddessbot.command.commands.HelpCommand;
-import com.goddessbot.command.commands.JoinCommand;
 import com.goddessbot.command.commands.PingCommand;
-import com.goddessbot.command.commands.PlayCommand;
+import com.goddessbot.command.commands.audio.ClearCommand;
+import com.goddessbot.command.commands.audio.JoinCommand;
+import com.goddessbot.command.commands.audio.LoopCommand;
+import com.goddessbot.command.commands.audio.NowPlayingCommand;
+import com.goddessbot.command.commands.audio.PauseCommand;
+import com.goddessbot.command.commands.audio.PlayCommand;
+import com.goddessbot.command.commands.audio.QueueCommand;
+import com.goddessbot.command.commands.audio.ResumeCommand;
+import com.goddessbot.command.commands.audio.SkipCommand;
+import com.goddessbot.command.commands.audio.StopCommand;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -24,7 +32,16 @@ public class CommandManager {
         addCommand(new PingCommand());
         addCommand(new HelpCommand(this));
         addCommand(new JoinCommand());
+        addCommand(new NowPlayingCommand());
         addCommand(new PlayCommand());
+        addCommand(new LoopCommand());
+        addCommand(new QueueCommand());
+        addCommand(new SkipCommand());
+        addCommand(new StopCommand());
+        addCommand(new PauseCommand());
+        addCommand(new ResumeCommand());
+        addCommand(new ClearCommand());
+        
 
     }
 

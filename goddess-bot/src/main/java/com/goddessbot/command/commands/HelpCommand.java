@@ -27,8 +27,8 @@ public class HelpCommand implements ICommand {
 
             builder.append("List of commands\n");
 
-            manager.getCommands().stream().map(ICommand::getName).forEach(
-                (it) -> builder.append('`').append(Config.get("default_prefix")).append(it).append("`\n")
+            manager.getCommands().stream().forEach(
+                (it) -> builder.append('`').append(Config.get("default_prefix")).append(it.getName()).append("` aliases: `").append(it.getAliases()).append("` - `").append(it.getHelp()).append("`\n")
             );
 
             channel.sendMessage(builder.toString()).queue();
@@ -57,13 +57,12 @@ public class HelpCommand implements ICommand {
     @Override
     public String getHelp() {
         
-        return "Shows list of commands\n"+
-        "Usage: `>help [command]`";
+        return "Shows list of commands";
     }
 
     @Override
     public List<String> getAliases(){
-        return List.of("commands","cmds","commandlist");
+        return List.of("commands","commandlist","h");
     }
     
 }

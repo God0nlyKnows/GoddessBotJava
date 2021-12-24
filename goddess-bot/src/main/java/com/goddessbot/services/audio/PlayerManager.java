@@ -1,6 +1,7 @@
 package com.goddessbot.services.audio;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.sedmelluq.discord.lavaplayer.player.AudioLoadResultHandler;
@@ -28,7 +29,7 @@ public class PlayerManager {
         AudioSourceManagers.registerLocalSource(this.audioPlayerManager);
     }
 
-    private synchronized GuildMusicManager getMusicManager(Guild guild) {
+    public synchronized GuildMusicManager getMusicManager(Guild guild) {
         long guildId = Long.parseLong(guild.getId());
         GuildMusicManager musicManager = musicManagers.get(guildId);
 
@@ -44,6 +45,7 @@ public class PlayerManager {
 
     public void loadAndPlay(TextChannel channel, String url) {
         final GuildMusicManager musicManager = this.getMusicManager(channel.getGuild());
+
 
         this.audioPlayerManager.loadItemOrdered(musicManager, url, new AudioLoadResultHandler() {
 
@@ -61,23 +63,24 @@ public class PlayerManager {
 
             @Override
             public void playlistLoaded(AudioPlaylist playlist) {
-                AudioTrack firstTrack = playlist.getSelectedTrack();
 
-                if (firstTrack == null) {
-                    firstTrack = playlist.getTracks().get(0);
+
+                final List<AudioTrack> tracks = playlist.getTracks();
+
+                channel.sendMessage("Adding to queue `" + tracks.size() + "` tracks from  `"
+                + playlist.getName() + "`").queue();
+
+
+                for(final AudioTrack track : tracks){
+                    musicManager.queueScheduler.queue(track);
                 }
-                musicManager.queue.queue(firstTrack);
-
-                channel.sendMessage("Adding to queue " + firstTrack.getInfo().title + " (first track of playlist "
-                        + playlist.getName() + ")").queue();
-
-                        //TODO: fix & implement playlist queueing
+                
 
             }
 
             @Override
             public void trackLoaded(AudioTrack track) {
-                musicManager.queue.queue(track);
+                musicManager.queueScheduler.queue(track);
 
                 channel.sendMessage("Adding to queue: `")
                         .append(track.getInfo().title)
