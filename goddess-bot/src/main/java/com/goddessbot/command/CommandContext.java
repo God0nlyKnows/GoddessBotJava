@@ -2,6 +2,7 @@ package com.goddessbot.command;
 
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.TextChannel;
@@ -51,6 +52,10 @@ public class CommandContext {
 
     public Member getMember() {
         return this.event.getMember();
+    }
+
+    public GuildVoiceState getMyVoiceState(){
+        return this.getSelfMember().getVoiceState();
     }
 
     

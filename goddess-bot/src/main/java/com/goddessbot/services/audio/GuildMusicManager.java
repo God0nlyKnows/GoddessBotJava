@@ -5,16 +5,16 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 
 
 public class GuildMusicManager {
-    private final AudioPlayer audioPlayer;
+    public final AudioPlayer audioPlayer;
     private final AudioPlayerSendHandler sendHandler;
 
-    public final TrackQueue queue;
+    public final TrackQueue queueScheduler;
 
 
     public GuildMusicManager(AudioPlayerManager manager) {
         this.audioPlayer = manager.createPlayer();
-        this.queue = new TrackQueue(this.audioPlayer);
-        this.audioPlayer.addListener(this.queue);
+        this.queueScheduler = new TrackQueue(this.audioPlayer);
+        this.audioPlayer.addListener(this.queueScheduler);
         this.sendHandler = new AudioPlayerSendHandler(this.audioPlayer);
     }
 

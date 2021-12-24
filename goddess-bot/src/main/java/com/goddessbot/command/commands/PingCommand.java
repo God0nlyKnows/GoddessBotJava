@@ -16,7 +16,7 @@ public class PingCommand implements ICommand {
 
     @Override
     public String getHelp(){
-        return "";
+        return "Shows latency between rest and websocket";
     }
 
     @Override

@@ -10,8 +10,9 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 
 public class TrackQueue extends AudioEventAdapter {
 
-    private final AudioPlayer player;
-    private final BlockingQueue<AudioTrack> queue;
+    public final AudioPlayer player;
+    public final BlockingQueue<AudioTrack> queue;
+    public boolean loop = false;
 
     public TrackQueue(AudioPlayer player) {
         this.player = player;
@@ -27,10 +28,22 @@ public class TrackQueue extends AudioEventAdapter {
     public void nextTrack(){
         this.player.startTrack(this.queue.poll(),false);
     }
+    
+    public void skipTrack(int amount){
+        while (amount > 1) {
+            this.queue.remove();
+            amount--;
+        }
+        this.player.startTrack(this.queue.poll(),false);
+    }
 
     @Override
     public void onTrackEnd(AudioPlayer player, AudioTrack track,AudioTrackEndReason endReason){
         if (endReason.mayStartNext) {
+            if(this.loop){
+                this.player.startTrack(track.makeClone(), false);
+                return;
+            }
             nextTrack();
         }
     }
