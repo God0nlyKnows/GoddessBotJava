@@ -9,7 +9,6 @@ import net.dv8tion.jda.api.entities.TextChannel;
 
 import java.util.List;
 
-
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
 public class CommandContext {
@@ -17,16 +16,16 @@ public class CommandContext {
     private final MessageReceivedEvent event;
     private final List<String> args;
 
-    public CommandContext(MessageReceivedEvent event, List<String> args){
+    public CommandContext(MessageReceivedEvent event, List<String> args) {
         this.event = event;
         this.args = args;
     }
-    public Guild getGuild(){
+
+    public Guild getGuild() {
         return this.getEvent().getGuild();
     }
 
-
-    public MessageReceivedEvent getEvent(){
+    public MessageReceivedEvent getEvent() {
         return this.event;
     }
 
@@ -54,9 +53,8 @@ public class CommandContext {
         return this.event.getMember();
     }
 
-    public GuildVoiceState getMyVoiceState(){
+    public GuildVoiceState getMyVoiceState() {
         return this.getSelfMember().getVoiceState();
     }
 
-    
 }

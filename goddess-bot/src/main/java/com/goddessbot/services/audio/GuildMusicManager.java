@@ -3,13 +3,11 @@ package com.goddessbot.services.audio;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.player.AudioPlayerManager;
 
-
 public class GuildMusicManager {
     public final AudioPlayer audioPlayer;
     private final AudioPlayerSendHandler sendHandler;
 
     public final TrackQueue queueScheduler;
-
 
     public GuildMusicManager(AudioPlayerManager manager) {
         this.audioPlayer = manager.createPlayer();
@@ -17,7 +15,6 @@ public class GuildMusicManager {
         this.audioPlayer.addListener(this.queueScheduler);
         this.sendHandler = new AudioPlayerSendHandler(this.audioPlayer);
     }
-
 
     public AudioPlayerSendHandler getSendHandler() {
         return sendHandler;
