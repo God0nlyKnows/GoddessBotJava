@@ -10,8 +10,8 @@ import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.requests.restaction.MessageAction;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
-import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
 public class QueueCommand implements ICommand {
@@ -19,7 +19,7 @@ public class QueueCommand implements ICommand {
     public void handle(CommandContext context) {
         final TextChannel channel = context.getTextChannel();
         final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(context.getGuild());
-        final BlockingQueue<AudioTrack> queue = musicManager.queueScheduler.queue;
+        final LinkedList<AudioTrack> queue = musicManager.queueScheduler.queue;
 
         if (queue.isEmpty()) {
             channel.sendMessage("The queue is currently empty").queue();
@@ -30,7 +30,7 @@ public class QueueCommand implements ICommand {
         final List<AudioTrack> trackList = new ArrayList<>(queue);
         final MessageAction messageAction = channel.sendMessage("**Current Queue:**\n");
 
-        for (int i = 0; i <  trackCount; i++) {
+        for (int i = 0; i < trackCount; i++) {
             final AudioTrack track = trackList.get(i);
             final AudioTrackInfo info = track.getInfo();
 
@@ -73,7 +73,7 @@ public class QueueCommand implements ICommand {
     }
 
     @Override
-    public List<String> getAliases(){
+    public List<String> getAliases() {
         return List.of("q");
     }
 }
