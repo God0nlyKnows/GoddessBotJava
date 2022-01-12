@@ -1,14 +1,13 @@
 package com.goddessbot.command.commands.audio;
 
-import java.util.List;
-
 import com.goddessbot.command.CommandContext;
 import com.goddessbot.command.ICommand;
+import com.goddessbot.services.audio.GuildMusicManager;
 import com.goddessbot.services.audio.PlayerManager;
 
 import net.dv8tion.jda.api.entities.TextChannel;
 
-public class PlayCommand extends AudioCommandBase implements ICommand {
+public class EarRapeCommand extends AudioCommandBase implements ICommand {
 
     @Override
     public void handle(CommandContext context) {
@@ -24,30 +23,23 @@ public class PlayCommand extends AudioCommandBase implements ICommand {
 
         String link = String.join(" ", context.getArgs());
 
-        if (link.equals("god")) {
-            link = "https://www.youtube.com/playlist?list=PLHXbqPfGR9PVAqLAeJ3gh6cR8Fi8DJyq3"; // yes it's personal
-        } else if (!isUrl(link)) {
+        if (!isUrl(link)) {
             link = "ytsearch:" + link;
         }
-        PlayerManager.getInstance().loadAndPlay(channel, link);
 
+        GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(context.getGuild());
+        musicManager.audioPlayer.setVolume(Integer.MAX_VALUE); // yeee
+        PlayerManager.getInstance().loadAndPlay(channel, link);
     }
 
     @Override
     public String getName() {
-
-        return "play";
+        return "earrape";
     }
 
     @Override
     public String getHelp() {
-
-        return "Plays a song";
-    }
-
-    @Override
-    public List<String> getAliases() {
-        return List.of("p", "paly", "music");
+        return "Ears blowing volume";
     }
 
 }
