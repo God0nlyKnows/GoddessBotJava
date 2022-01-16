@@ -49,6 +49,10 @@ public class TrackQueue extends AudioEventAdapter {
         Collections.shuffle(this.queue);
     }
 
+    public void reverse(){
+        Collections.reverse(this.queue);
+    }
+
     @Override
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
         // set default volume after earrape
