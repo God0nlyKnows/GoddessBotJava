@@ -19,6 +19,7 @@ import com.goddessbot.command.commands.audio.PauseCommand;
 import com.goddessbot.command.commands.audio.PlayCommand;
 import com.goddessbot.command.commands.audio.QueueCommand;
 import com.goddessbot.command.commands.audio.ResumeCommand;
+import com.goddessbot.command.commands.audio.ReverseCommand;
 import com.goddessbot.command.commands.audio.ShuffleCommand;
 import com.goddessbot.command.commands.audio.SkipCommand;
 import com.goddessbot.command.commands.audio.StopCommand;
@@ -43,6 +44,7 @@ public class CommandManager {
         addCommand(new ClearCommand());
         addCommand(new ShuffleCommand());
         addCommand(new EarRapeCommand());
+        addCommand(new ReverseCommand());
 
     }
 
