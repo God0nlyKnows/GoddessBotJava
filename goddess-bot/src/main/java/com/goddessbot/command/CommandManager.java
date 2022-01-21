@@ -23,6 +23,7 @@ import com.goddessbot.command.commands.audio.ReverseCommand;
 import com.goddessbot.command.commands.audio.ShuffleCommand;
 import com.goddessbot.command.commands.audio.SkipCommand;
 import com.goddessbot.command.commands.audio.StopCommand;
+import com.goddessbot.command.commands.booru.R34Command;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -45,6 +46,7 @@ public class CommandManager {
         addCommand(new ShuffleCommand());
         addCommand(new EarRapeCommand());
         addCommand(new ReverseCommand());
+        addCommand(new R34Command());
 
     }
 

@@ -36,6 +36,13 @@
 
   <dependencies>
 
+  <dependency>
+    <groupId>com.microsoft.signalr</groupId>
+    <artifactId>signalr</artifactId>
+    <version>6.0.1</version>
+</dependency>
+
+
     <dependency>
       <groupId>io.github.cdimascio</groupId>
       <artifactId>dotenv-java</artifactId>
@@ -64,6 +71,15 @@
     <artifactId>JDA</artifactId>
     <version>5.0.0-alpha.2</version>
 </dependency>
+
+<dependency>
+  <groupId>com.god0nlyknows.jbooru</groupId>
+  <artifactId>jbooru</artifactId>
+  <version>1.0.1</version>
+	<scope>system</scope>
+	<systemPath>${project.basedir}/lib/jbooru-1.0.1-jar-with-dependencies.jar</systemPath>
+</dependency>
+
 
   </dependencies>
 
