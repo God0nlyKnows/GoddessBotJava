@@ -18,7 +18,7 @@ public class ReverseCommand extends AudioCommandBase implements ICommand {
 
         final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(context.getGuild());
 
-        musicManager.queueScheduler.reverse();
+        musicManager.queueScheduler.reverse(channel);
 
     }
 

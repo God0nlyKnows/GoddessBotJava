@@ -4,22 +4,27 @@ import javax.annotation.Nonnull;
 
 import com.goddessbot.command.CommandContext;
 import com.goddessbot.command.CommandManager;
+import com.goddessbot.services.audio.AudioReactionManager;
 import com.goddessbot.services.audio.PlayerManager;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import net.dv8tion.jda.api.entities.Message;
+import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.User;
 import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.guild.voice.GenericGuildVoiceEvent;
 import net.dv8tion.jda.api.events.guild.voice.GuildVoiceLeaveEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
+import net.dv8tion.jda.api.events.message.react.GenericMessageReactionEvent;
+import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 
 public class Listener extends ListenerAdapter {
     private static final Logger LOGGER = LoggerFactory.getLogger(CommandContext.class);
-    private final CommandManager manager = new CommandManager();
+    private final CommandManager commandManager = new CommandManager();
+    private final AudioReactionManager audioReactionManager = new AudioReactionManager();
 
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
@@ -37,9 +42,19 @@ public class Listener extends ListenerAdapter {
         }
 
         if (raw.startsWith(prefix)) {
-            manager.handle(event);
+            commandManager.handle(event);
         }
 
+    }
+
+    @Override
+    public void onMessageReactionAdd(MessageReactionAddEvent event){
+        Message message = event.retrieveMessage().complete();
+
+        if(checkItsMyMsg(event) && !checkItsBot(event) && (checkContentOfEmbed(message.getEmbeds().get(0), "Now playing:") || checkContentOfEmbed(message.getEmbeds().get(0), "Now streaming:"))){
+            
+            audioReactionManager.handle(event);
+        }
     }
 
     @Override
@@ -62,5 +77,35 @@ public class Listener extends ListenerAdapter {
         }
         return false;
 
+    }
+
+    private boolean checkItsMyMsg(GenericMessageReactionEvent event) {
+        var msg = event.retrieveMessage().complete();
+        var id = event.getJDA().getSelfUser().getId();
+        if (msg.getAuthor().getId().equals(id)) {
+            return true;
+        }
+        return false;
+
+    }
+
+    private boolean checkItsBot(GenericMessageReactionEvent event) {
+
+        if (event.getUser().isBot()) {
+            return true;
+        }
+        return false;
+
+    }
+
+    private boolean checkContentOfEmbed(MessageEmbed embed, String content) {
+        if (embed == null) {
+            return false;
+        }
+
+        if (embed.getTitle().contains(content)) {
+            return true;
+        }
+        return false;
     }
 }

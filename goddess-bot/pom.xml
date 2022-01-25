@@ -75,9 +75,9 @@
 <dependency>
   <groupId>com.god0nlyknows.jbooru</groupId>
   <artifactId>jbooru</artifactId>
-  <version>1.0.1</version>
+  <version>1.0.2</version>
 	<scope>system</scope>
-	<systemPath>${project.basedir}/lib/jbooru-1.0.1-jar-with-dependencies.jar</systemPath>
+	<systemPath>${project.basedir}/lib/jbooru-1.0.2-jar-with-dependencies.jar</systemPath>
 </dependency>
 
 

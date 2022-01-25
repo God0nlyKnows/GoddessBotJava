@@ -15,10 +15,22 @@ public class BooruService {
 
         Random rand = new Random();
         var theChoosenOne = posts.get(rand.nextInt(posts.size()));
+        if(checkIfVideo(theChoosenOne.getFileUrl(),List.of("webm","mp4","mkv","gif","avi"))){
+            channel.sendMessage("No support for videos right now").queue();
+            return;
+        }
         EmbedBuilder builder = new EmbedBuilder();
+        System.out.println(theChoosenOne.getFileUrl());
         builder.setImage(theChoosenOne.getFileUrl());
         channel.sendMessageEmbeds(List.of(builder.build())).queue();
     }
 
-    
+    private static boolean checkIfVideo(String str,List<String> match){
+        for (String item : match) {
+            if(str.contains(item)){
+                return true;
+            }
+        }
+        return false;
+    }
 }

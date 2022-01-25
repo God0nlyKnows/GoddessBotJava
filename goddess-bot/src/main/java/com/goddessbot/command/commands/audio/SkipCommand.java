@@ -46,8 +46,7 @@ public class SkipCommand extends AudioCommandBase implements ICommand {
             if(queueSize < ammountToSkip){
                 ammountToSkip = queueSize + 1;
             }
-            musicManager.queueScheduler.skipTrack(ammountToSkip);
-            channel.sendMessageFormat("Skipped `%s` track",ammountToSkip).queue();
+            musicManager.queueScheduler.skipTrack(ammountToSkip, channel);
         }
         
     }

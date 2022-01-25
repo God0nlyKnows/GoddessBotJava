@@ -1,7 +1,9 @@
 package com.goddessbot.command.commands.booru;
 
+import com.god0nlyknows.jbooru.YandeGetPosts;
 import com.goddessbot.command.CommandContext;
 import com.goddessbot.command.ICommand;
+import com.goddessbot.services.booru.BooruService;
 
 import net.dv8tion.jda.api.entities.TextChannel;
 
@@ -12,11 +14,9 @@ public class YandeCommand implements ICommand {
 
         TextChannel channel = context.getTextChannel();
         
-        if (context.getArgs().isEmpty()) {
-            channel.sendMessage("You need to provide tag").queue();
-        }
 
-        
+
+        BooruService.sendRandomPost(channel, context.getArgs().get(0), new YandeGetPosts());
 
     }
 
@@ -28,7 +28,7 @@ public class YandeCommand implements ICommand {
     @Override
     public String getHelp() {
         
-        return "Get random post from yande.re";
+        return "Get random post from Yande.re";
     }
     
 }

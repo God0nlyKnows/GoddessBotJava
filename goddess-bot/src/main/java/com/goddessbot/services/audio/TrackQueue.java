@@ -37,28 +37,35 @@ public class TrackQueue extends AudioEventAdapter {
         this.player.startTrack(this.queue.poll(), false);
     }
 
-    public void skipTrack(int amount) {
+    public void loop(TextChannel channel){
+
+        this.loop = !this.loop;
+        channel.sendMessageFormat("Loop **%s**", loop ? "enabled" : "disabled").queue();
+    }
+
+    public void skipTrack(int amount, TextChannel channel) {
         while (amount > 1) {
             this.queue.remove();
             amount--;
         }
+        
+        channel.sendMessage("Skipped `"+ amount +"` tracks").queue();
         this.player.startTrack(this.queue.poll(), false);
     }
 
-    public void shuffle() {
+    public void shuffle(TextChannel channel) {
         Collections.shuffle(this.queue);
+        channel.sendMessage("Queue shuffled").queue();
     }
-
-    public void reverse(){
+    
+    public void reverse(TextChannel channel){
         Collections.reverse(this.queue);
+        channel.sendMessage("Queue reversed").queue();
     }
 
     @Override
     public void onTrackEnd(AudioPlayer player, AudioTrack track, AudioTrackEndReason endReason) {
-        // set default volume after earrape
-        if (player.getVolume() == Integer.MAX_VALUE) {
-            player.setVolume(100);
-        }
+
         if (endReason.mayStartNext) {
             if (this.loop) {
                 this.player.startTrack(track.makeClone(), false);
@@ -109,7 +116,7 @@ public class TrackQueue extends AudioEventAdapter {
     }
 
     private boolean checkIfLastMsgIsMine(Message message, TextChannel channel) {
-        if (message.getAuthor().getIdLong() == channel.getJDA().getSelfUser().getIdLong()) {
+        if (message.getAuthor().getId().equals(channel.getJDA().getSelfUser().getId())) {
             return true;
         }
         return false;

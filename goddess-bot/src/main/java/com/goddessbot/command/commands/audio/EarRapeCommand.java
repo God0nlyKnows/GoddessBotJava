@@ -13,23 +13,19 @@ public class EarRapeCommand extends AudioCommandBase implements ICommand {
     public void handle(CommandContext context) {
         final TextChannel channel = context.getTextChannel();
 
-        if (context.getArgs().isEmpty()) {
-            channel.sendMessage("You need to provide arg").queue();
-        }
-
         if (!validateVoiceChannel(context.getMember(), context.getMyVoiceState(), channel)) {
             return;
         }
 
-        String link = String.join(" ", context.getArgs());
-
-        if (!isUrl(link)) {
-            link = "ytsearch:" + link;
-        }
 
         GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(context.getGuild());
-        musicManager.audioPlayer.setVolume(Integer.MAX_VALUE); // yeee
-        PlayerManager.getInstance().loadAndPlay(channel, link);
+        if(Integer.toString(musicManager.audioPlayer.getVolume()).equalsIgnoreCase("100")){
+            musicManager.audioPlayer.setVolume(Integer.MAX_VALUE); // yeee
+        } else {
+            musicManager.audioPlayer.setVolume(100);
+        }
+
+        
     }
 
     @Override
