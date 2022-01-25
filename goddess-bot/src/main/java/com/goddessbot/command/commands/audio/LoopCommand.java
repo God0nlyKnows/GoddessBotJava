@@ -20,11 +20,8 @@ public class LoopCommand extends AudioCommandBase implements ICommand {
 
         
         final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(context.getGuild());
-        final boolean loop = !musicManager.queueScheduler.loop;
 
-        musicManager.queueScheduler.loop = loop;
-
-        channel.sendMessageFormat("Loop **%s**", loop ? "enabled" : "disabled").queue();
+        musicManager.queueScheduler.loop(channel);
     }
 
     @Override

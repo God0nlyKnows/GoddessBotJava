@@ -21,7 +21,7 @@ public class ShuffleCommand extends AudioCommandBase implements ICommand {
 
         final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(context.getGuild());
 
-        musicManager.queueScheduler.shuffle();
+        musicManager.queueScheduler.shuffle(channel);
 
     }
 
