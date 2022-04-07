@@ -10,12 +10,12 @@ import com.god0nlyknows.jbooru.IGetPosts;
 
 public class BooruService {
 
-    public static void sendRandomPost(TextChannel channel,String tag, IGetPosts getPosts){
+    public static void sendRandomPost(TextChannel channel, String tag, IGetPosts getPosts) {
         var posts = getPosts.getPosts(tag);
 
         Random rand = new Random();
         var theChoosenOne = posts.get(rand.nextInt(posts.size()));
-        if(checkIfVideo(theChoosenOne.getFileUrl(),List.of("webm","mp4","mkv","gif","avi"))){
+        if (checkIfVideo(theChoosenOne.getFileUrl(), List.of("webm", "mp4", "mkv", "gif", "avi"))) {
             channel.sendMessage("No support for videos right now").queue();
             return;
         }
@@ -25,9 +25,9 @@ public class BooruService {
         channel.sendMessageEmbeds(List.of(builder.build())).queue();
     }
 
-    private static boolean checkIfVideo(String str,List<String> match){
+    private static boolean checkIfVideo(String str, List<String> match) {
         for (String item : match) {
-            if(str.contains(item)){
+            if (str.contains(item)) {
                 return true;
             }
         }

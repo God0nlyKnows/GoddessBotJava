@@ -13,6 +13,7 @@ import com.goddessbot.command.commands.PingCommand;
 import com.goddessbot.command.commands.audio.ClearCommand;
 import com.goddessbot.command.commands.audio.EarRapeCommand;
 import com.goddessbot.command.commands.audio.JoinCommand;
+import com.goddessbot.command.commands.audio.LeaveCommand;
 import com.goddessbot.command.commands.audio.LoopCommand;
 import com.goddessbot.command.commands.audio.NowPlayingCommand;
 import com.goddessbot.command.commands.audio.PauseCommand;
@@ -30,7 +31,6 @@ import com.goddessbot.command.commands.booru.GelbooruCommand;
 import com.goddessbot.command.commands.booru.KonachanCommand;
 import com.goddessbot.command.commands.booru.LolibooruCommand;
 import com.goddessbot.command.commands.booru.R34Command;
-import com.goddessbot.command.commands.booru.RealbooruCommand;
 import com.goddessbot.command.commands.booru.SafeCommand;
 import com.goddessbot.command.commands.booru.YandeCommand;
 
@@ -42,8 +42,9 @@ public class CommandManager {
     public CommandManager() {
         addCommand(new PingCommand());
         addCommand(new HelpCommand(this));
-        //audio cmds
+        // audio cmds
         addCommand(new JoinCommand());
+        addCommand(new LeaveCommand());
         addCommand(new NowPlayingCommand());
         addCommand(new PlayCommand());
         addCommand(new LoopCommand());
@@ -56,7 +57,7 @@ public class CommandManager {
         addCommand(new ShuffleCommand());
         addCommand(new EarRapeCommand());
         addCommand(new ReverseCommand());
-        //booru cmds
+        // booru cmds
         addCommand(new R34Command());
         addCommand(new DanbooruCommand());
         addCommand(new E621Command());
@@ -64,7 +65,7 @@ public class CommandManager {
         addCommand(new GelbooruCommand());
         addCommand(new KonachanCommand());
         addCommand(new LolibooruCommand());
-        addCommand(new RealbooruCommand());
+        // addCommand(new RealbooruCommand());
         addCommand(new SafeCommand());
         addCommand(new YandeCommand());
 

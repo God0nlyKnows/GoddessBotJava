@@ -17,15 +17,14 @@ public class EarRapeCommand extends AudioCommandBase implements ICommand {
             return;
         }
 
-
         GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(context.getGuild());
-        if(Integer.toString(musicManager.audioPlayer.getVolume()).equalsIgnoreCase("100")){
-            musicManager.audioPlayer.setVolume(Integer.MAX_VALUE); // yeee
+        var volume = musicManager.audioPlayer.getVolume();
+        if (volume == 100) {
+            musicManager.audioPlayer.setVolume(1000); // yeee
         } else {
             musicManager.audioPlayer.setVolume(100);
         }
 
-        
     }
 
     @Override
