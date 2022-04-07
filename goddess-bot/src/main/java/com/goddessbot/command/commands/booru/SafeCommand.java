@@ -11,28 +11,32 @@ public class SafeCommand implements ICommand {
 
     @Override
     public void handle(CommandContext context) {
-        
+
         TextChannel channel = context.getTextChannel();
-        
+
         if (context.getArgs().isEmpty()) {
             channel.sendMessage("You need to provide tag").queue();
             return;
         }
-
-        BooruService.sendRandomPost(channel, context.getArgs().get(0), new SafebooruGetPosts());
+        try {
+            BooruService.sendRandomPost(channel, context.getArgs().get(0), new SafebooruGetPosts());
+        } catch (Exception e) {
+            channel.sendMessage(
+                    "Bad luck, no `" + context.getArgs().get(0) + "` for you. (psst.. there was an error)");
+        }
 
     }
 
     @Override
     public String getName() {
-        
+
         return "safe";
     }
 
     @Override
     public String getHelp() {
-        
+
         return "Get random post from Safebooru";
     }
-    
+
 }

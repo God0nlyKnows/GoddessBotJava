@@ -11,23 +11,31 @@ public class DanbooruCommand implements ICommand {
 
     @Override
     public void handle(CommandContext context) {
-        
+
         TextChannel channel = context.getTextChannel();
 
-        BooruService.sendRandomPost(channel, context.getArgs().get(0), new DanbooruGetPosts());
+        if (channel.isNSFW())
+            try {
+                BooruService.sendRandomPost(channel, context.getArgs().get(0), new DanbooruGetPosts());
 
+            } catch (Exception e) {
+                channel.sendMessage(
+                        "Bad luck, no `" + context.getArgs().get(0) + "` for you. (psst.. there was an error)");
+            }
+        else
+            channel.sendMessage("It's not NSFW channel! Baka! >///<");
     }
 
     @Override
     public String getName() {
-        
+
         return "danbooru";
     }
 
     @Override
     public String getHelp() {
-        
+
         return "Get random post from Danbooru";
     }
-    
+
 }

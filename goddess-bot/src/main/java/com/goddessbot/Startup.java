@@ -17,11 +17,11 @@ public class Startup {
 
     public static JDA buildJda() throws LoginException {
 
-        JDABuilder builder = JDABuilder.createDefault(Config.get("token"),configureIntents());
+        JDABuilder builder = JDABuilder.createDefault(Config.get("token"), configureIntents());
 
         configureMemoryUsage(builder);
 
-        builder.setActivity(Activity.watching("You"));
+        builder.setActivity(Activity.watching("God 0nly Knows!👀"));
 
         builder.setStatus(OnlineStatus.ONLINE);
 
@@ -30,13 +30,11 @@ public class Startup {
         return builder.build();
     }
 
-
-
     private static void configureMemoryUsage(JDABuilder builder) {
 
         builder.disableCache(CacheFlag.ACTIVITY);
 
-        builder.setMemberCachePolicy(MemberCachePolicy.VOICE.or(MemberCachePolicy.OWNER));
+        builder.setMemberCachePolicy(MemberCachePolicy.ALL);
 
         builder.setChunkingFilter(ChunkingFilter.NONE);
 
@@ -45,20 +43,18 @@ public class Startup {
         builder.setLargeThreshold(60);
     }
 
-
-    private static EnumSet<GatewayIntent> configureIntents(){
+    private static EnumSet<GatewayIntent> configureIntents() {
         return EnumSet.of(
-            GatewayIntent.DIRECT_MESSAGES,
-            GatewayIntent.DIRECT_MESSAGE_REACTIONS,
-            GatewayIntent.DIRECT_MESSAGE_TYPING,
-            GatewayIntent.GUILD_MESSAGES,
-            GatewayIntent.GUILD_MESSAGE_REACTIONS,
-            GatewayIntent.GUILD_MESSAGE_TYPING,
-            GatewayIntent.GUILD_VOICE_STATES,
-            GatewayIntent.GUILD_EMOJIS,
-            GatewayIntent.GUILD_MEMBERS,
-            GatewayIntent.GUILD_PRESENCES,
-            GatewayIntent.GUILD_WEBHOOKS
-        );
+                GatewayIntent.DIRECT_MESSAGES,
+                GatewayIntent.DIRECT_MESSAGE_REACTIONS,
+                GatewayIntent.DIRECT_MESSAGE_TYPING,
+                GatewayIntent.GUILD_MESSAGES,
+                GatewayIntent.GUILD_MESSAGE_REACTIONS,
+                GatewayIntent.GUILD_MESSAGE_TYPING,
+                GatewayIntent.GUILD_VOICE_STATES,
+                GatewayIntent.GUILD_EMOJIS,
+                GatewayIntent.GUILD_MEMBERS,
+                GatewayIntent.GUILD_PRESENCES,
+                GatewayIntent.GUILD_WEBHOOKS);
     }
 }

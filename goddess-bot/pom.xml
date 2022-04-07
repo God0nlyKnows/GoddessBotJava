@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>com.goddessbot</groupId>
@@ -20,27 +20,30 @@
 
 
   <repositories>
-  <repository>
-    <id>dv8tion</id>
-    <name>m2-dv8tion</name>
-    <url>https://m2.dv8tion.net/releases</url>
-  </repository>
-  <repository>
-    <id>jfrog-duncte123</id>
-    <name>jfrog-duncte123</name>
-    <url>https://duncte123.jfrog.io/artifactory/maven</url>
-</repository>
-
+    <repository>
+      <id>dv8tion</id>
+      <name>m2-dv8tion</name>
+      <url>https://m2.dv8tion.net/releases</url>
+    </repository>
+    <repository>
+      <id>jfrog-duncte123</id>
+      <name>jfrog-duncte123</name>
+      <url>https://duncte123.jfrog.io/artifactory/maven</url>
+    </repository>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
   </repositories>
 
 
   <dependencies>
 
-  <dependency>
-    <groupId>com.microsoft.signalr</groupId>
-    <artifactId>signalr</artifactId>
-    <version>6.0.1</version>
-</dependency>
+    <dependency>
+      <groupId>com.microsoft.signalr</groupId>
+      <artifactId>signalr</artifactId>
+      <version>6.0.1</version>
+    </dependency>
 
 
     <dependency>
@@ -48,11 +51,11 @@
       <artifactId>dotenv-java</artifactId>
       <version>2.2.3</version>
     </dependency>
-<dependency>
-  <groupId>me.duncte123</groupId>
-  <artifactId>botCommons</artifactId>
-  <version>2.3.9</version>
-</dependency>
+    <dependency>
+      <groupId>me.duncte123</groupId>
+      <artifactId>botCommons</artifactId>
+      <version>2.3.9</version>
+    </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
@@ -61,30 +64,20 @@
     </dependency>
 
     <dependency>
-    <groupId>com.sedmelluq</groupId>
-    <artifactId>lavaplayer</artifactId>
-    <version>1.3.77</version>
-  </dependency>
+      <groupId>com.github.idpromnut</groupId>
+      <artifactId>lavaplayer</artifactId>
+      <version>youtube_details_parse_bug-SNAPSHOT</version>
+    </dependency>
 
     <dependency>
-    <groupId>net.dv8tion</groupId>
-    <artifactId>JDA</artifactId>
-    <version>5.0.0-alpha.2</version>
-</dependency>
-
-<dependency>
-  <groupId>com.god0nlyknows.jbooru</groupId>
-  <artifactId>jbooru</artifactId>
-  <version>1.0.2</version>
-	<scope>system</scope>
-	<systemPath>${project.basedir}/lib/jbooru-1.0.2-jar-with-dependencies.jar</systemPath>
-</dependency>
-
-
+      <groupId>net.dv8tion</groupId>
+      <artifactId>JDA</artifactId>
+      <version>5.0.0-alpha.2</version>
+    </dependency>
   </dependencies>
 
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>      <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
