@@ -21,10 +21,10 @@ public class E621Command implements ICommand {
                 BooruService.sendRandomPost(channel, context.getArgs().get(0), new E621GetPosts());
             } catch (Exception e) {
                 channel.sendMessage(
-                        "Bad luck, no `" + context.getArgs().get(0) + "` for you. (psst.. there was an error)");
+                        "Bad luck, no `" + context.getArgs().get(0) + "` for you. (psst.. there was an error)").queue();
             }
         else
-            channel.sendMessage("It's not NSFW channel! Baka! >///<");
+            channel.sendMessage("It's not NSFW channel! Baka! >///<").queue();
     }
 
     @Override
