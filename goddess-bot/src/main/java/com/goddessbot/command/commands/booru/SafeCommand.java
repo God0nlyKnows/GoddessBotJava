@@ -22,7 +22,7 @@ public class SafeCommand implements ICommand {
             BooruService.sendRandomPost(channel, context.getArgs().get(0), new SafebooruGetPosts());
         } catch (Exception e) {
             channel.sendMessage(
-                    "Bad luck, no `" + context.getArgs().get(0) + "` for you. (psst.. there was an error)");
+                    "Bad luck, no `" + context.getArgs().get(0) + "` for you. (psst.. there was an error)").queue();
         }
 
     }
