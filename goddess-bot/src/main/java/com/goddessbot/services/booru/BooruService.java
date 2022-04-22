@@ -21,7 +21,7 @@ public class BooruService {
         }
         EmbedBuilder builder = new EmbedBuilder();
         System.out.println(theChoosenOne.getFileUrl());
-        builder.setImage(theChoosenOne.getFileUrl());
+        builder.setImage(theChoosenOne.getFileUrl().replaceAll(" ", "%20"));
         channel.sendMessageEmbeds(List.of(builder.build())).queue();
     }
 

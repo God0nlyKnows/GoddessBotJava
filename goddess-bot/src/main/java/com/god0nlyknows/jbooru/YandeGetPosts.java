@@ -20,8 +20,10 @@ public class YandeGetPosts extends GetPostsBase implements IGetPosts {
 
     @Override
     public List<IResponseDTO> getPosts(String tag) {
-
-        return sendRequest(String.format("https://yande.re/post.json?limit=%s&page=%s&tags=%s", limit, page, tag),
+        if (tag != null)
+            return sendRequest(String.format("https://yande.re/post.json?limit=%s&page=%s&tags=%s", limit, page, tag),
+                    YandeResponseDTO[].class);
+        return sendRequest(String.format("https://yande.re/post.json?limit=%s&page=%s", limit, page),
                 YandeResponseDTO[].class);
     }
 

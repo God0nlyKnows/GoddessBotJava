@@ -19,8 +19,10 @@ public class E926GetPosts extends GetPostsBase implements IGetPosts {
 
     @Override
     public List<IResponseDTO> getPosts(String tag) {
-
-        return sendRequest(String.format("https://e926.net/posts.json?limit=%s&page=%s&tags=%s", limit, page, tag),
+        if (tag != null)
+            return sendRequest(String.format("https://e926.net/posts.json?limit=%s&page=%s&tags=%s", limit, page, tag),
+                    E926ResponseDTO[].class);
+        return sendRequest(String.format("https://e926.net/posts.json?limit=%s&page=%s", limit, page),
                 E926ResponseDTO[].class);
     }
 

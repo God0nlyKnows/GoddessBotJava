@@ -12,17 +12,17 @@ public class SafeCommand implements ICommand {
     @Override
     public void handle(CommandContext context) {
 
+        String arg = null;
+        if (!context.getArgs().isEmpty())
+            arg = context.getArgs().get(0);
+
         TextChannel channel = context.getTextChannel();
 
-        if (context.getArgs().isEmpty()) {
-            channel.sendMessage("You need to provide tag").queue();
-            return;
-        }
         try {
-            BooruService.sendRandomPost(channel, context.getArgs().get(0), new SafebooruGetPosts());
+            BooruService.sendRandomPost(channel, arg, new SafebooruGetPosts());
         } catch (Exception e) {
             channel.sendMessage(
-                    "Bad luck, no `" + context.getArgs().get(0) + "` for you. (psst.. there was an error)").queue();
+                    "Bad luck, no `" + arg + "` for you. (psst.. there was an error)").queue();
         }
 
     }

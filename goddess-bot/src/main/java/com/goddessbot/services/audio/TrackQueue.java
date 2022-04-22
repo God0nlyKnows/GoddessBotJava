@@ -37,7 +37,7 @@ public class TrackQueue extends AudioEventAdapter {
         this.player.startTrack(this.queue.poll(), false);
     }
 
-    public void loop(TextChannel channel){
+    public void loop(TextChannel channel) {
 
         this.loop = !this.loop;
         channel.sendMessageFormat("Loop **%s**", loop ? "enabled" : "disabled").queue();
@@ -48,8 +48,8 @@ public class TrackQueue extends AudioEventAdapter {
             this.queue.remove();
             amount--;
         }
-        
-        channel.sendMessage("Skipped `"+ amount +"` tracks").queue();
+
+        channel.sendMessage("Skipped `" + amount + "` tracks").queue();
         this.player.startTrack(this.queue.poll(), false);
     }
 
@@ -57,8 +57,8 @@ public class TrackQueue extends AudioEventAdapter {
         Collections.shuffle(this.queue);
         channel.sendMessage("Queue shuffled").queue();
     }
-    
-    public void reverse(TextChannel channel){
+
+    public void reverse(TextChannel channel) {
         Collections.reverse(this.queue);
         channel.sendMessage("Queue reversed").queue();
     }
@@ -89,6 +89,7 @@ public class TrackQueue extends AudioEventAdapter {
         }
         lastUsedChannel.sendMessageEmbeds(List.of(createEmbed(track).build())).queue(msg -> {
             msg.addReaction("🔂").queue();
+            msg.addReaction("🔀").queue();
             msg.addReaction("⏹️").queue();
             msg.addReaction("⏭").queue();
         });

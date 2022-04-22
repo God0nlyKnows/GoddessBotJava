@@ -14,14 +14,18 @@ public class E621Command implements ICommand {
     @Override
     public void handle(CommandContext context) {
 
+        String arg = null;
+        if (!context.getArgs().isEmpty())
+            arg = context.getArgs().get(0);
+
         TextChannel channel = context.getTextChannel();
 
         if (channel.isNSFW())
             try {
-                BooruService.sendRandomPost(channel, context.getArgs().get(0), new E621GetPosts());
+                BooruService.sendRandomPost(channel, arg, new E621GetPosts());
             } catch (Exception e) {
                 channel.sendMessage(
-                        "Bad luck, no `" + context.getArgs().get(0) + "` for you. (psst.. there was an error)").queue();
+                        "Bad luck, no `" + arg + "` for you. (psst.. there was an error)").queue();
             }
         else
             channel.sendMessage("It's not NSFW channel! Baka! >///<").queue();

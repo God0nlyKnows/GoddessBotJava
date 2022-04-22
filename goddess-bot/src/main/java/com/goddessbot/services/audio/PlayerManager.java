@@ -31,6 +31,7 @@ public class PlayerManager {
 
         AudioSourceManagers.registerRemoteSources(this.audioPlayerManager);
         AudioSourceManagers.registerLocalSource(this.audioPlayerManager);
+
     }
 
     public synchronized GuildMusicManager getMusicManager(Guild guild) {

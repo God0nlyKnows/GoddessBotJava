@@ -17,10 +17,15 @@ public class GelbooruGetPosts extends GetPostsBase implements IGetPosts {
 
     @Override
     public List<IResponseDTO> getPosts(String tag) {
-
+        if (tag != null)
+            return sendRequest(
+                    String.format(
+                            "https://gelbooru.com/index.php?page=dapi&s=post&q=index&json=1&limit=%s&pid=%s&tags=%s",
+                            limit, page, tag),
+                    GelbooruResponseDTO.class);
         return sendRequest(
-                String.format("https://gelbooru.com/index.php?page=dapi&s=post&q=index&json=1&limit=%s&pid=%s&tags=%s",
-                        limit, page, tag),
+                String.format("https://gelbooru.com/index.php?page=dapi&s=post&q=index&json=1&limit=%s&pid=%s", limit,
+                        page),
                 GelbooruResponseDTO.class);
     }
 
