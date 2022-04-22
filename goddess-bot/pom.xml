@@ -14,8 +14,8 @@
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>17</maven.compiler.source>
-    <maven.compiler.target>17</maven.compiler.target>
+    <maven.compiler.source>15</maven.compiler.source>
+    <maven.compiler.target>15</maven.compiler.target>
   </properties>
 
 
@@ -36,7 +36,6 @@
     </repository>
   </repositories>
 
-
   <dependencies>
 
     <dependency>
@@ -44,7 +43,6 @@
       <artifactId>signalr</artifactId>
       <version>6.0.1</version>
     </dependency>
-
 
     <dependency>
       <groupId>io.github.cdimascio</groupId>
@@ -74,11 +72,25 @@
       <artifactId>JDA</artifactId>
       <version>5.0.0-alpha.2</version>
     </dependency>
+
   </dependencies>
 
   <build>
     <pluginManagement>      <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
       <plugins>
+        <plugin>
+          <artifactId>maven-assembly-plugin</artifactId>
+          <configuration>
+            <archive>
+              <manifest>
+                <mainClass>com.goddessbot.App</mainClass>
+              </manifest>
+            </archive>
+            <descriptorRefs>
+              <descriptorRef>jar-with-dependencies</descriptorRef>
+            </descriptorRefs>
+          </configuration>
+        </plugin>
         <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>

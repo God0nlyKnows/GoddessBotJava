@@ -19,9 +19,12 @@ public class LolibooruGetPosts extends GetPostsBase implements IGetPosts {
 
     @Override
     public List<IResponseDTO> getPosts(String tag) {
-
+        if (tag != null)
+            return sendRequest(
+                    String.format("https://lolibooru.moe/post/index.json?limit=%s&page=%s&tags=%s", limit, page, tag),
+                    LolibooruResponseDTO[].class);
         return sendRequest(
-                String.format("https://lolibooru.moe/post/index.json?limit=%s&page=%s&tags=%s", limit, page, tag),
+                String.format("https://lolibooru.moe/post/index.json?limit=%s&page=%s", limit, page),
                 LolibooruResponseDTO[].class);
     }
 
