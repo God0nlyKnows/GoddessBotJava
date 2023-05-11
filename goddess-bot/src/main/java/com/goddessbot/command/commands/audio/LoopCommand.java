@@ -6,12 +6,13 @@ import com.goddessbot.command.ICommand;
 import com.goddessbot.services.audio.GuildMusicManager;
 import com.goddessbot.services.audio.PlayerManager;
 
-import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
+
 
 public class LoopCommand extends AudioCommandBase implements ICommand {
     @Override
     public void handle(CommandContext context) {
-        final TextChannel channel = context.getTextChannel();
+        final MessageChannel channel = context.getMessageChannel();
 
 
         if(!validateVoiceChannel(context.getMember(),context.getMyVoiceState(),channel)){

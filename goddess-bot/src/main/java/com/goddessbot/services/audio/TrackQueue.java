@@ -13,13 +13,14 @@ import com.sedmelluq.discord.lavaplayer.track.AudioTrackEndReason;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
+import net.dv8tion.jda.api.entities.emoji.Emoji;
 
 public class TrackQueue extends AudioEventAdapter {
 
     public final AudioPlayer player;
     public final LinkedList<AudioTrack> queue;
-    public TextChannel lastUsedChannel;
+    public MessageChannel lastUsedChannel;
     public boolean loop = false;
 
     public TrackQueue(AudioPlayer player) {
@@ -37,13 +38,13 @@ public class TrackQueue extends AudioEventAdapter {
         this.player.startTrack(this.queue.poll(), false);
     }
 
-    public void loop(TextChannel channel) {
+    public void loop(MessageChannel channel) {
 
         this.loop = !this.loop;
         channel.sendMessageFormat("Loop **%s**", loop ? "enabled" : "disabled").queue();
     }
 
-    public void skipTrack(int amount, TextChannel channel) {
+    public void skipTrack(int amount, MessageChannel channel) {
         while (amount > 1) {
             this.queue.remove();
             amount--;
@@ -53,12 +54,12 @@ public class TrackQueue extends AudioEventAdapter {
         this.player.startTrack(this.queue.poll(), false);
     }
 
-    public void shuffle(TextChannel channel) {
+    public void shuffle(MessageChannel channel) {
         Collections.shuffle(this.queue);
         channel.sendMessage("Queue shuffled").queue();
     }
 
-    public void reverse(TextChannel channel) {
+    public void reverse(MessageChannel channel) {
         Collections.reverse(this.queue);
         channel.sendMessage("Queue reversed").queue();
     }
@@ -87,19 +88,20 @@ public class TrackQueue extends AudioEventAdapter {
                         || checkContentOfEmbed(lastMessage.getEmbeds().get(0), "Now streaming:"))) {
             lastMessage.delete().queue();
         }
+
         lastUsedChannel.sendMessageEmbeds(List.of(createEmbed(track).build())).queue(msg -> {
-            msg.addReaction("🔂").queue();
-            msg.addReaction("🔀").queue();
-            msg.addReaction("⏹️").queue();
-            msg.addReaction("⏭").queue();
+            msg.addReaction(Emoji.fromUnicode("🔂")).queue();
+            msg.addReaction(Emoji.fromUnicode("🔀")).queue();
+            msg.addReaction(Emoji.fromUnicode("⏹️")).queue();
+            msg.addReaction(Emoji.fromUnicode("⏭")).queue();
         });
     }
 
-    public TextChannel getLastUsedChannel() {
+    public MessageChannel getLastUsedChannel() {
         return lastUsedChannel;
     }
 
-    public void setLastUsedChannel(TextChannel lastUsedChannel) {
+    public void setLastUsedChannel(MessageChannel lastUsedChannel) {
         this.lastUsedChannel = lastUsedChannel;
     }
 
@@ -116,7 +118,7 @@ public class TrackQueue extends AudioEventAdapter {
         return builder;
     }
 
-    private boolean checkIfLastMsgIsMine(Message message, TextChannel channel) {
+    private boolean checkIfLastMsgIsMine(Message message, MessageChannel channel) {
         if (message.getAuthor().getId().equals(channel.getJDA().getSelfUser().getId())) {
             return true;
         }

@@ -17,7 +17,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 
 public class PlayerManager {
     private static PlayerManager INSTANCE;
@@ -56,9 +56,12 @@ public class PlayerManager {
         musicManagers.remove(guildId);
     }
 
-    public void loadAndPlay(TextChannel channel, String url) {
-        final GuildMusicManager musicManager = this.getMusicManager(channel.getGuild());
+    public void loadAndPlay(MessageChannel channel,Guild guild, String url) {
+        
+        final GuildMusicManager musicManager = this.getMusicManager(guild);
         musicManager.queueScheduler.setLastUsedChannel(channel);
+        try {
+            
         this.audioPlayerManager.loadItemOrdered(musicManager, url, new AudioLoadResultHandler() {
 
             @Override
@@ -105,6 +108,9 @@ public class PlayerManager {
             }
 
         });
+    } catch (Exception e) {
+        e.printStackTrace();        
+    }
     }
 
     public static PlayerManager getInstance() {
@@ -130,7 +136,7 @@ public class PlayerManager {
         return builder;
     }
 
-    private boolean checkIfLastMsgIsMine(Message message, TextChannel channel) {
+    private boolean checkIfLastMsgIsMine(Message message, MessageChannel channel) {
         if (message.getAuthor().getIdLong() == channel.getJDA().getSelfUser().getIdLong()) {
             return true;
         }

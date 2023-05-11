@@ -4,8 +4,7 @@ import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.MessageChannel;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 
 import java.util.List;
 
@@ -41,8 +40,8 @@ public class CommandContext {
         return this.event.getChannel();
     }
 
-    public TextChannel getTextChannel() {
-        return this.event.getTextChannel();
+    public MessageChannel getMessageChannel() {
+        return this.event.getChannel();
     }
 
     public Member getSelfMember() {

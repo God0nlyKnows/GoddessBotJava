@@ -10,14 +10,14 @@ import com.sedmelluq.discord.lavaplayer.player.AudioPlayer;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
 
-import net.dv8tion.jda.api.entities.*;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 
 
 public class NowPlayingCommand extends AudioCommandBase implements  ICommand {
 
     @Override
     public void handle(CommandContext context) {
-        final TextChannel channel = context.getTextChannel();
+        final MessageChannel channel = context.getMessageChannel();
 
 
         if(!validateVoiceChannel(context.getMember(),context.getMyVoiceState(),channel)){

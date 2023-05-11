@@ -1,6 +1,6 @@
 package com.goddessbot;
 
-import javax.annotation.Nonnull;
+
 
 import com.goddessbot.command.CommandContext;
 import com.goddessbot.command.CommandManager;
@@ -13,9 +13,8 @@ import org.slf4j.LoggerFactory;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageEmbed;
 import net.dv8tion.jda.api.entities.User;
-import net.dv8tion.jda.api.events.ReadyEvent;
 import net.dv8tion.jda.api.events.guild.voice.GenericGuildVoiceEvent;
-import net.dv8tion.jda.api.events.guild.voice.GuildVoiceLeaveEvent;
+import net.dv8tion.jda.api.events.guild.voice.GuildVoiceUpdateEvent;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.events.message.react.GenericMessageReactionEvent;
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
@@ -58,7 +57,7 @@ public class Listener extends ListenerAdapter {
     }
 
     @Override
-    public void onGuildVoiceLeave(GuildVoiceLeaveEvent event) {
+    public void onGuildVoiceUpdate(GuildVoiceUpdateEvent event) {
         if (checkItsMe(event)) {
             // there is a persistance queue option if this line disabled
             PlayerManager.getInstance().flushMusicManager(event.getGuild());
@@ -67,7 +66,7 @@ public class Listener extends ListenerAdapter {
     }
 
     @Override
-    public void onReady(@Nonnull ReadyEvent event) {
+    public void onReady(net.dv8tion.jda.api.events.session.ReadyEvent event) {
         LOGGER.info("%#s is ready", event.getJDA().getSelfUser().getAsTag());
     }
 
