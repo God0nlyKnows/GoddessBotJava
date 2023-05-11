@@ -5,7 +5,6 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Pattern;
 
-import javax.annotation.Nullable;
 
 import com.goddessbot.Config;
 import com.goddessbot.command.commands.HelpCommand;
@@ -65,7 +64,7 @@ public class CommandManager {
         addCommand(new GelbooruCommand());
         addCommand(new KonachanCommand());
         addCommand(new LolibooruCommand());
-        // addCommand(new RealbooruCommand());
+        //addCommand(new RealbooruCommand());
         addCommand(new SafeCommand());
         addCommand(new YandeCommand());
 
@@ -86,7 +85,6 @@ public class CommandManager {
         return commands;
     }
 
-    @Nullable
     public ICommand getCommand(String search) {
         String searchLower = search.toLowerCase();
 

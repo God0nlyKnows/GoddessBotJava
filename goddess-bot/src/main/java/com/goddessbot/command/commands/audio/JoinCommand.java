@@ -5,9 +5,9 @@ import java.util.List;
 import com.goddessbot.command.CommandContext;
 import com.goddessbot.command.ICommand;
 
-import net.dv8tion.jda.api.entities.AudioChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.AudioChannel;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.managers.AudioManager;
 
 
@@ -15,7 +15,7 @@ public class JoinCommand extends AudioCommandBase implements ICommand {
 
     @Override
     public void handle(CommandContext context) {
-        final TextChannel channel = context.getTextChannel();
+        final MessageChannel channel = context.getMessageChannel();
         final Member member = context.getMember();
 
 

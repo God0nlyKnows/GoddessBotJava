@@ -46,13 +46,14 @@ public class Startup {
     private static EnumSet<GatewayIntent> configureIntents() {
         return EnumSet.of(
                 GatewayIntent.DIRECT_MESSAGES,
+                GatewayIntent.MESSAGE_CONTENT,
                 GatewayIntent.DIRECT_MESSAGE_REACTIONS,
                 GatewayIntent.DIRECT_MESSAGE_TYPING,
                 GatewayIntent.GUILD_MESSAGES,
                 GatewayIntent.GUILD_MESSAGE_REACTIONS,
                 GatewayIntent.GUILD_MESSAGE_TYPING,
                 GatewayIntent.GUILD_VOICE_STATES,
-                GatewayIntent.GUILD_EMOJIS,
+                GatewayIntent.GUILD_EMOJIS_AND_STICKERS,
                 GatewayIntent.GUILD_MEMBERS,
                 GatewayIntent.GUILD_PRESENCES,
                 GatewayIntent.GUILD_WEBHOOKS);

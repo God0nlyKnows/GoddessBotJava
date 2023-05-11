@@ -1,36 +1,33 @@
 package com.goddessbot.services.audio;
 
 import net.dv8tion.jda.api.events.message.react.MessageReactionAddEvent;
+import net.dv8tion.jda.api.entities.emoji.Emoji;
 
 public class AudioReactionManager {
     public void handle(MessageReactionAddEvent event) {
-        var emote = event.getReactionEmote();
+        var emote = event.getReaction().getEmoji();
         final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(event.getGuild());
+        
 
-        System.out.println(emote.getEmoji());
-        System.out.println(emote.getName());
-        System.out.println(emote.getAsReactionCode());
-        System.out.println(emote.getAsCodepoints());
+        if (emote.getAsReactionCode().equals(Emoji.fromUnicode("⏭").getAsReactionCode())) {
 
-        if (emote.getAsCodepoints().equals("U+23ed")) {
+            musicManager.queueScheduler.skipTrack(1, event.getChannel());
 
-            musicManager.queueScheduler.skipTrack(1, event.getTextChannel());
-
-        } else if (emote.getAsCodepoints().equals("U+23f9U+fe0f")) {
+        } else if (emote.getAsReactionCode().equals(Emoji.fromUnicode("⏹️").getAsReactionCode())) {
 
             cleanReaction(event);
             musicManager.queueScheduler.player.stopTrack();
             musicManager.queueScheduler.queue.clear();
 
-        } else if (emote.getAsCodepoints().equals("U+1f502")) {
+        } else if (emote.getAsReactionCode().equals(Emoji.fromUnicode("🔂").getAsReactionCode())) {
             cleanReaction(event);
 
-            musicManager.queueScheduler.loop(event.getTextChannel());
+            musicManager.queueScheduler.loop(event.getChannel());
 
-        } else if (emote.getAsCodepoints().equals("U+1f500")) {
+        } else if (emote.getAsReactionCode().equals(Emoji.fromUnicode("🔀").getAsReactionCode())) {
             cleanReaction(event);
 
-            musicManager.queueScheduler.shuffle(event.getTextChannel());
+            musicManager.queueScheduler.shuffle(event.getChannel());
         }
 
     }
@@ -38,12 +35,10 @@ public class AudioReactionManager {
     private void cleanReaction(MessageReactionAddEvent event) {
         var channel = event.getChannel();
         var msg = channel.retrieveMessageById(event.getMessageId()).complete();
-        channel.deleteMessageById(event.getMessageId()).queue();
-        channel.sendMessage(msg).queue(x -> {
-            x.addReaction("🔂").queue();
-            x.addReaction("🔀").queue();
-            x.addReaction("⏹️").queue();
-            x.addReaction("⏭").queue();
-        });
+        msg.clearReactions().queue();
+        msg.addReaction(Emoji.fromUnicode("🔂")).queue();
+            msg.addReaction(Emoji.fromUnicode("🔀")).queue();
+            msg.addReaction(Emoji.fromUnicode("⏹️")).queue();
+            msg.addReaction(Emoji.fromUnicode("⏭")).queue();
     }
 }

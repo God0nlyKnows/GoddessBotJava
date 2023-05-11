@@ -1,7 +1,7 @@
 package com.goddessbot.services.booru;
 
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 
 import java.util.List;
 import java.util.Random;
@@ -10,7 +10,7 @@ import com.god0nlyknows.jbooru.IGetPosts;
 
 public class BooruService {
 
-    public static void sendRandomPost(TextChannel channel, String tag, IGetPosts getPosts) {
+    public static void sendRandomPost(MessageChannel channel, String tag, IGetPosts getPosts) {
         var posts = getPosts.getPosts(tag);
 
         Random rand = new Random();

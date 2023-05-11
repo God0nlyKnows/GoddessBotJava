@@ -6,8 +6,7 @@ import com.goddessbot.services.audio.GuildMusicManager;
 import com.goddessbot.services.audio.PlayerManager;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrack;
 import com.sedmelluq.discord.lavaplayer.track.AudioTrackInfo;
-import net.dv8tion.jda.api.entities.TextChannel;
-import net.dv8tion.jda.api.requests.restaction.MessageAction;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -17,7 +16,7 @@ import java.util.concurrent.TimeUnit;
 public class QueueCommand implements ICommand {
     @Override
     public void handle(CommandContext context) {
-        final TextChannel channel = context.getTextChannel();
+        final MessageChannel channel = context.getMessageChannel();
         final GuildMusicManager musicManager = PlayerManager.getInstance().getMusicManager(context.getGuild());
         final LinkedList<AudioTrack> queue = musicManager.queueScheduler.queue;
 
@@ -28,13 +27,15 @@ public class QueueCommand implements ICommand {
 
         final int trackCount = Math.min(queue.size(), 20);
         final List<AudioTrack> trackList = new ArrayList<>(queue);
-        final MessageAction messageAction = channel.sendMessage("**Current Queue:**\n");
+
+        StringBuilder msgBuilder = new StringBuilder();
+        
 
         for (int i = 0; i < trackCount; i++) {
             final AudioTrack track = trackList.get(i);
             final AudioTrackInfo info = track.getInfo();
 
-            messageAction.append('#')
+            msgBuilder.append('#')
                     .append(String.valueOf(i + 1))
                     .append(" `")
                     .append(String.valueOf(info.title))
@@ -46,12 +47,12 @@ public class QueueCommand implements ICommand {
         }
 
         if (trackList.size() > trackCount) {
-            messageAction.append("And `")
+            msgBuilder.append("And `")
                     .append(String.valueOf(trackList.size() - trackCount))
                     .append("` more...");
         }
 
-        messageAction.queue();
+        channel.sendMessage(msgBuilder.toString()).queue();
     }
 
     private String formatTime(long timeInMillis) {

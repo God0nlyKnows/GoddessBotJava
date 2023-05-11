@@ -7,11 +7,11 @@ import com.goddessbot.Config;
 
 import net.dv8tion.jda.api.entities.GuildVoiceState;
 import net.dv8tion.jda.api.entities.Member;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 
 public abstract class AudioCommandBase {
 
-    protected boolean isBotInVoiceChannel(GuildVoiceState myVoiceState, TextChannel channel) {
+    protected boolean isBotInVoiceChannel(GuildVoiceState myVoiceState, MessageChannel channel) {
 
         if (!myVoiceState.inAudioChannel()) {
             channel.sendMessage("I must be in a voice channel :C").queue();
@@ -20,7 +20,7 @@ public abstract class AudioCommandBase {
         return true;
     }
 
-    protected boolean isMemberInVoiceChannel(Member member, TextChannel channel) {
+    protected boolean isMemberInVoiceChannel(Member member, MessageChannel channel) {
 
         if (!member.getVoiceState().inAudioChannel() && member.getId() != Config.get("owner_id")) {
             channel.sendMessage("You need to be in a voice channel :/").queue();
@@ -29,7 +29,7 @@ public abstract class AudioCommandBase {
         return true;
     }
 
-    protected boolean isMemberSameInVoiceChannel(Member member, GuildVoiceState myVoiceState, TextChannel channel) {
+    protected boolean isMemberSameInVoiceChannel(Member member, GuildVoiceState myVoiceState, MessageChannel channel) {
 
         if (!member.getVoiceState().getChannel().equals(myVoiceState.getChannel())
                 && member.getId() != Config.get("owner_id")) {
@@ -39,7 +39,7 @@ public abstract class AudioCommandBase {
         return true;
     }
 
-    protected boolean validateVoiceChannel(Member member, GuildVoiceState myVoiceState, TextChannel channel) {
+    protected boolean validateVoiceChannel(Member member, GuildVoiceState myVoiceState, MessageChannel channel) {
         if (!isBotInVoiceChannel(myVoiceState, channel)) {
             return false;
         }

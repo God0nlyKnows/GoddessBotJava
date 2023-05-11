@@ -5,7 +5,7 @@ import com.goddessbot.command.CommandContext;
 import com.goddessbot.command.ICommand;
 import com.goddessbot.services.booru.BooruService;
 
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 
 public class SafeCommand implements ICommand {
 
@@ -16,7 +16,7 @@ public class SafeCommand implements ICommand {
         if (!context.getArgs().isEmpty())
             arg = context.getArgs().get(0);
 
-        TextChannel channel = context.getTextChannel();
+        MessageChannel channel = context.getMessageChannel();
 
         try {
             BooruService.sendRandomPost(channel, arg, new SafebooruGetPosts());

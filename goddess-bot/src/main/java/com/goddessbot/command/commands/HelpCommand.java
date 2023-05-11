@@ -7,7 +7,7 @@ import com.goddessbot.command.CommandContext;
 import com.goddessbot.command.CommandManager;
 import com.goddessbot.command.ICommand;
 
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 
 public class HelpCommand implements ICommand {
 
@@ -20,7 +20,7 @@ public class HelpCommand implements ICommand {
     @Override
     public void handle(CommandContext context) {
         List<String> args = context.getArgs();
-        TextChannel channel = context.getTextChannel();
+        MessageChannel channel = context.getMessageChannel();
         
         if(args.isEmpty()){
             StringBuilder builder = new StringBuilder();
