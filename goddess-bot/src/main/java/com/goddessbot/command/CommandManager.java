@@ -23,6 +23,15 @@ import com.goddessbot.command.commands.audio.ReverseCommand;
 import com.goddessbot.command.commands.audio.ShuffleCommand;
 import com.goddessbot.command.commands.audio.SkipCommand;
 import com.goddessbot.command.commands.audio.StopCommand;
+import com.goddessbot.command.commands.booru.DanbooruCommand;
+import com.goddessbot.command.commands.booru.E621Command;
+import com.goddessbot.command.commands.booru.E926Command;
+import com.goddessbot.command.commands.booru.GelbooruCommand;
+import com.goddessbot.command.commands.booru.KonachanCommand;
+import com.goddessbot.command.commands.booru.LolibooruCommand;
+import com.goddessbot.command.commands.booru.R34Command;
+import com.goddessbot.command.commands.booru.SafeCommand;
+import com.goddessbot.command.commands.booru.YandeCommand;
 
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 
@@ -47,6 +56,17 @@ public class CommandManager {
         addCommand(new ShuffleCommand());
         addCommand(new EarRapeCommand());
         addCommand(new ReverseCommand());
+        // booru cmds
+        addCommand(new R34Command());
+        addCommand(new DanbooruCommand());
+        addCommand(new E621Command());
+        addCommand(new E926Command());
+        addCommand(new GelbooruCommand());
+        addCommand(new KonachanCommand());
+        addCommand(new LolibooruCommand());
+        //addCommand(new RealbooruCommand());
+        addCommand(new SafeCommand());
+        addCommand(new YandeCommand());
 
     }
 
