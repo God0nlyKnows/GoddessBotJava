@@ -4,7 +4,6 @@ D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\HelpCommand.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\dto\YandeResponseDTO.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\E621GetPosts.java
-D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\websocket\EventEndpointCreator.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\audio\LeaveCommand.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\booru\E621Command.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\dto\LolibooruResponseDTO.java
@@ -24,8 +23,8 @@ D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\CommandContext.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\booru\DanbooruCommand.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\GelbooruGetPosts.java
+D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\websocket\HubConnector.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\dto\E621ResponseDTO.java
-D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\websocket\Listener.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\DanbooruGetPosts.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\KonachanGetPosts.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\Startup.java
@@ -33,8 +32,6 @@ D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\CommandMa
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\services\audio\TrackQueue.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\audio\PlayCommand.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\YandeGetPosts.java
-D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\websocket\EventEndpoint.java
-D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\websocket\WebSocketConfig.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\dto\KonachanResponseDTO.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\audio\ShuffleCommand.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\audio\ClearCommand.java
@@ -53,7 +50,6 @@ D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\services\audio\Au
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\dto\RealbooruResponseDTO.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\audio\SkipCommand.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\dto\R34ResponseDTO.java
-D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\websocket\WebSocketServer.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\Config.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\audio\NowPlayingCommand.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\dto\DanbooruResponseDTO.java
@@ -62,8 +58,6 @@ D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\god0nlyknows\jbooru\SafebooruGetPosts.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\audio\ResumeCommand.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\booru\R34Command.java
-D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\websocket\Message.java
-D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\websocket\WebSocketController.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\services\booru\BooruService.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\services\audio\PlayerManager.java
 D:\Git\GoddessBotJava\goddess-bot\src\main\java\com\goddessbot\command\commands\booru\YandeCommand.java
